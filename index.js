@@ -6,13 +6,14 @@ require('dotenv').config()
 
 const mongoose = require('mongoose');
 const { text } = require('body-parser');
-mongoose.connect(process.env.MONGOD)
-  .then(() => console.log("mongodb is connected..!"))
-  .catch((error) => console.error(error));
 
-app.use(
+mongoose.connect(process.env.MONGODB)
+  .then(() => console.log("mongodb is connected..!"))
+  .catch((error) => console.error(error)); 
+
+app.use( 
   cors({
-    origin: process.env.CORS,
+    origin: process.env.CORS || "http://localhost:3000" ,
     methods: ['GET', "POST", "DELETE", "PUT", "PATCH"],
     credentials: true
   })
