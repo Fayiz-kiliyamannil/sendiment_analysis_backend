@@ -2,17 +2,18 @@ const express = require('express');
 const cors = require("cors")
 const app = express()
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 
 const mongoose = require('mongoose');
 const { text } = require('body-parser');
-mongoose.connect("mongodb+srv://fayizkiliyamannil:JuT7glAHQK21StJT@cluster0.4fhdznl.mongodb.net/")
+mongoose.connect(process.env.MONGOD)
   .then(() => console.log("mongodb is connected..!"))
   .catch((error) => console.error(error));
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://sentiment-project1.vercel.app',
     methods: ['GET', "POST", "DELETE", "PUT", "PATCH"],
     credentials: true
   })
